@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transverse Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --black: #0D0D0D;
+    --orange: #E8803A;
+    --green: #2D7A5E;
+    --green-light: #4A9E7A;
+    --muted: #8A8478;
+    --border: rgba(13,13,13,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .nav-logo .wordmark {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    color: var(--black);
+  }
+
+  .nav-logo .sub {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black) !important;
+    color: var(--cream) !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--orange) !important; color: var(--cream) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-spiral {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    opacity: 0.06;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--orange);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .hero-body {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #4A4540;
+    max-width: 480px;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--cream);
+    padding: 16px 32px;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--orange); transform: translateY(-1px); }
+
+  .btn-secondary {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s;
+  }
+
+  .btn-secondary:hover { gap: 14px; }
+  .btn-secondary::after { content: '→'; }
+
+  /* HERO RIGHT */
+  .hero-right {
+    position: relative;
+  }
+
+  .flagship-card {
+    background: var(--black);
+    color: var(--cream);
+    padding: 48px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .flagship-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,240,232,0.1);
+  }
+
+  .flagship-card::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,240,232,0.08);
+  }
+
+  .card-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--cream);
+  }
+
+  .card-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.65);
+    margin-bottom: 32px;
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(245,240,232,0.12);
+  }
+
+  .card-meta-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+  }
+
+  .card-meta-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .card-download {
+    background: var(--orange);
+    color: var(--cream);
+    padding: 12px 24px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .card-download:hover { opacity: 0.85; }
+
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 2px;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+  }
+
+  .stat-item {
+    background: var(--cream);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--black);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 60px;
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .strip-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 6px;
+  }
+
+  .strip-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .strip-content p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #4A4540;
+    max-width: 580px;
+  }
+
+  .strip-content p + p { margin-top: 16px; }
+
+  /* PILLARS */
+  .pillars {
+    padding: 80px 60px;
+    background: var(--black);
+    color: var(--cream);
+  }
+
+  .pillars-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 60px;
+  }
+
+  .pillars-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .pillars-header p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.55);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .pillar {
+    background: rgba(245,240,232,0.04);
+    padding: 48px 40px;
+    border: 1px solid rgba(245,240,232,0.08);
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .pillar:hover { background: rgba(245,240,232,0.08); }
+
+  .pillar-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: rgba(245,240,232,0.06);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .pillar-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 24px;
+  }
+
+  .pillar h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--cream);
+  }
+
+  .pillar h3 span {
+    color: var(--orange);
+  }
+
+  .pillar p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.5);
+  }
+
+  /* LATEST INSIGHTS */
+  .insights-section {
+    padding: 80px 60px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .see-all {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s;
+  }
+
+  .see-all:hover { gap: 14px; }
+  .see-all::after { content: '→'; }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .insight-card {
+    border: 1px solid var(--border);
+    padding: 40px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .insight-card:hover {
+    border-color: var(--black);
+    transform: translateY(-2px);
+  }
+
+  .insight-card.featured {
+    background: var(--green);
+    color: var(--cream);
+    border-color: var(--green);
+  }
+
+  .insight-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .insight-card.featured .insight-tag {
+    color: rgba(245,240,232,0.6);
+  }
+
+  .insight-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .insight-card.featured h3 { font-size: 28px; }
+
+  .insight-excerpt {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #6A6058;
+    margin-bottom: 32px;
+  }
+
+  .insight-card.featured .insight-excerpt {
+    color: rgba(245,240,232,0.65);
+  }
+
+  .insight-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .insight-card.featured .insight-footer {
+    border-top-color: rgba(245,240,232,0.15);
+    color: rgba(245,240,232,0.45);
+  }
+
+  /* SUBSCRIBE */
+  .subscribe {
+    padding: 100px 60px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .subscribe-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .subscribe-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .subscribe-inner h2 em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .subscribe-inner p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #6A6058;
+    margin-bottom: 48px;
+  }
+
+  .subscribe-form {
+    display: flex;
+    gap: 0;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1.5px solid var(--black);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .subscribe-form input {
+    flex: 1;
+    padding: 18px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--black);
+  }
+
+  .subscribe-form input::placeholder { color: var(--muted); }
+
+  .subscribe-form button {
+    background: var(--black);
+    color: var(--cream);
+    border: none;
+    padding: 18px 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .subscribe-form button:hover { background: var(--orange); }
+
+  .subscribe-note {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 20px;
+  }
+
+  /* BG DECORATION */
+  .subscribe-bg {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    opacity: 0.04;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .footer-brand .wordmark {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    color: var(--black);
+  }
+
+  .footer-brand .sub {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+    display: block;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-top: 16px;
+    max-width: 240px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-col ul a {
+    font-size: 14px;
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul a:hover { color: var(--orange); }
+
+  .footer-bottom {
+    padding: 24px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .transverse-family {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    gap: 24px;
+  }
+
+  .transverse-family a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .transverse-family a:hover { color: var(--black); }
+  .transverse-family a.active { color: var(--black); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .fade-up-1 { animation-delay: 0.1s; }
+  .fade-up-2 { animation-delay: 0.2s; }
+  .fade-up-3 { animation-delay: 0.3s; }
+  .fade-up-4 { animation-delay: 0.4s; }
+
+  /* SPIRAL SVG */
+  .spiral-svg circle {
+    fill: none;
+    stroke: var(--green);
+    stroke-width: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="wordmark">Transverse</span>
+    <span class="sub">Insights</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#subscribe" class="nav-cta">Subscribe</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Background spiral decoration -->
+  <svg class="hero-bg-spiral" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#2D7A5E" stroke-width="1">
+      <path d="M200,200 m0,-10 a10,10 0 1,1 -0.1,0"/>
+      <path d="M200,200 m0,-25 a25,25 0 1,1 -0.1,0"/>
+      <path d="M200,200 m0,-40 a40,40 0 1,1 -0.1,0"/>
+      <path d="M200,200 m0,-58 a58,58 0 1,1 -0.1,0"/>
+      <path d="M200,200 m0,-78 a78,78 0 1,1 -0.1,0"/>
+      <path d="M200,200 m0,-100 a100,100 0 1,1 -0.1,0"/>
+      <path d="M200,200 m0,-124 a124,124 0 1,1 -0.1,0"/>
+      <path d="M200,200 m0,-150 a150,150 0 1,1 -0.1,0"/>
+      <path d="M200,200 m0,-178 a178,178 0 1,1 -0.1,0"/>
+    </g>
+  </svg>
+
+  <div>
+    <div class="hero-eyebrow fade-up fade-up-1">Investment-Grade African Research</div>
+    <h1 class="fade-up fade-up-2">Where Capital <em>Meets</em> Continent</h1>
+    <p class="hero-body fade-up fade-up-3">
+      Transverse Insights produces rigorous, action-oriented research on African industrial development — identifying where endogenous capital should flow, and why it hasn't yet.
+    </p>
+    <div class="hero-actions fade-up fade-up-4">
+      <a href="#research" class="btn-primary">Read Latest Report</a>
+      <a href="#subscribe" class="btn-secondary">Subscribe Free</a>
+    </div>
+  </div>
+
+  <div class="hero-right fade-up fade-up-3">
+    <div class="flagship-card">
+      <div class="card-tag">Flagship Report · Q1 2025</div>
+      <div class="card-title">The Import Substitution Imperative: Nigeria's $15 Billion Industrial Opportunity</div>
+      <div class="card-body">A systematic mapping of Nigeria's critical import dependencies — identifying where domestic production is economically viable, capital-efficient, and strategically urgent.</div>
+      <div class="card-meta">
+        <div>
+          <div class="card-meta-label">Focus Sector</div>
+          <div class="card-meta-value">Pharmaceuticals · Agri-Processing</div>
+        </div>
+        <a href="#" class="card-download">Download PDF</a>
+      </div>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-item">
+        <span class="stat-num">$2T+</span>
+        <span class="stat-label">African Pension Assets</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">28M</span>
+        <span class="stat-label">Nigeria Housing Deficit</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">$15B</span>
+        <span class="stat-label">Import Gap Identified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="strip-label">Our Mandate</div>
+  <div class="strip-content">
+    <h2>Research built to <em style="font-style:italic; color:var(--green)">act on</em>, not file away</h2>
+    <p>Transverse Insights is the research pillar of Transverse Africa — a development and investment platform designed to catalyze African-led capital formation. Every analysis we produce is written with a single question in mind: where should African capital flow, and what is structurally preventing it?</p>
+    <p>We produce investment-grade research targeting African pension fund managers, sovereign wealth allocators, family offices, and policy architects. Our work traces the intersection of industrial gaps, ownership structures, and long-term economic transformation.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PILLARS -->
+<section class="pillars" id="methodology">
+  <div class="pillars-header">
+    <h2>The Three-Lens Framework</h2>
+    <p>Every piece of research is produced through our proprietary analytical framework — ensuring that insights are not just academically rigorous but operationally actionable.</p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <h3><span>Strategy</span> — Insights</h3>
+      <p>Development Economics-led analysis identifying high-yield, high-impact industrial gaps. We map what exists, what's missing, and what the gap costs the continent annually.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <h3><span>Capital</span> — Engine</h3>
+      <p>Every report concludes with a structured capital thesis — identifying how endogenous African capital (pension funds, SWFs, family offices) can own and finance the opportunity.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <h3><span>Sovereignty</span> — Mandate</h3>
+      <p>Our research is anchored by a Sovereignty Mandate: 51% African ownership, local currency resilience, and long-term wealth retention as non-negotiable parameters.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insights-section" id="research">
+  <div class="section-header">
+    <h2>Latest Research</h2>
+    <a href="#" class="see-all">All Research</a>
+  </div>
+  <div class="insights-grid">
+    <a href="#" class="insight-card featured">
+      <span class="insight-tag">Flagship · Pharmaceuticals</span>
+      <h3>The Import Substitution Imperative: Nigeria's $15B Industrial Opportunity</h3>
+      <p class="insight-excerpt">Nigeria spends approximately $2 billion annually importing finished medicines — a dependency that became a national security issue after COVID-19. This report maps the API manufacturing opportunity, capital requirements, and ownership structure needed to reverse it.</p>
+      <div class="insight-footer">
+        <span>Q1 2025</span>
+        <span>28 pages · PDF</span>
+      </div>
+    </a>
+    <a href="#" class="insight-card">
+      <span class="insight-tag">Monthly Signal · Capital</span>
+      <h3>African Pension Funds & The Domestic Allocation Gap</h3>
+      <p class="insight-excerpt">$2 trillion in African pension assets remain largely allocated outside the continent. We examine the structural barriers and the policy levers that could change this.</p>
+      <div class="insight-footer">
+        <span>Feb 2025</span>
+        <span>6 pages</span>
+      </div>
+    </a>
+    <a href="#" class="insight-card">
+      <span class="insight-tag">Monthly Signal · Industry</span>
+      <h3>Nigeria's Housing Deficit: The Materials Opportunity</h3>
+      <p class="insight-excerpt">With a 28 million unit housing deficit, we map the specialty materials production gap and what a vertically integrated manufacturer could realistically capture.</p>
+      <div class="insight-footer">
+        <span>Jan 2025</span>
+        <span>5 pages</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe" id="subscribe">
+  <svg class="subscribe-bg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#2D7A5E" stroke-width="1">
+      <circle cx="200" cy="200" r="20"/>
+      <circle cx="200" cy="200" r="45"/>
+      <circle cx="200" cy="200" r="72"/>
+      <circle cx="200" cy="200" r="102"/>
+      <circle cx="200" cy="200" r="135"/>
+      <circle cx="200" cy="200" r="170"/>
+    </g>
+  </svg>
+  <div class="subscribe-inner">
+    <h2>The continent's capital is <em>waiting</em></h2>
+    <p>Receive quarterly flagship reports and monthly intelligence briefings — research designed for those who allocate, advise, and build across Africa.</p>
+    <div class="subscribe-form">
+      <input type="email" placeholder="Your email address">
+      <button type="button">Subscribe</button>
+    </div>
+    <p class="subscribe-note">Free · No spam · Unsubscribe anytime</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="wordmark">Transverse</div>
+    <span class="sub">Insights</span>
+    <p>Investment-grade research on African industrial development and endogenous capital formation.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Research</h4>
+    <ul>
+      <li><a href="#">Flagship Reports</a></li>
+      <li><a href="#">Monthly Signals</a></li>
+      <li><a href="#">Methodology</a></li>
+      <li><a href="#">Data Sources</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Transverse Africa</h4>
+    <ul>
+      <li><a href="#">Transverse Capital</a></li>
+      <li><a href="#">Transverse Industries</a></li>
+      <li><a href="#">The Sovereignty Mandate</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <p>© 2025 Transverse Africa. All rights reserved.</p>
+  <div class="transverse-family">
+    <a href="#">Capital</a>
+    <a href="#" class="active">Insights</a>
+    <a href="#">Industries</a>
+  </div>
+</div>
+
+</body>
+</html>
