@@ -802,6 +802,125 @@
     stroke: var(--green);
     stroke-width: 1.5;
   }
+
+  /* MOBILE FIXES */
+  @media (max-width: 768px) {
+    nav {
+      padding: 16px 20px;
+    }
+    .nav-links {
+      display: none;
+    }
+    .hero {
+      min-height: auto;
+      padding: 90px 20px 40px;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .hero-bg-spiral {
+      display: none;
+    }
+    h1 {
+      font-size: 36px;
+    }
+    .hero-body {
+      font-size: 15px;
+    }
+    .hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .flagship-card {
+      padding: 28px;
+    }
+    .card-title {
+      font-size: 20px;
+    }
+    .stat-strip {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .stat-num {
+      font-size: 22px;
+    }
+    .about-strip {
+      padding: 50px 20px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .strip-content h2 {
+      font-size: 28px;
+    }
+    .pillars {
+      padding: 50px 20px;
+    }
+    .pillars-header {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .pillars-header h2 {
+      font-size: 30px;
+    }
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+    .pillar {
+      padding: 32px 24px;
+    }
+    .pillar-num {
+      font-size: 40px;
+    }
+    .insights-section {
+      padding: 50px 20px;
+    }
+    .section-header h2 {
+      font-size: 30px;
+    }
+    .insights-grid {
+      grid-template-columns: 1fr;
+    }
+    .insight-card.featured h3 {
+      font-size: 22px;
+    }
+    .subscribe {
+      padding: 60px 20px;
+    }
+    .subscribe-inner h2 {
+      font-size: 34px;
+    }
+    .subscribe-form {
+      flex-direction: column;
+      border: none;
+      gap: 12px;
+    }
+    .subscribe-form input {
+      border: 1.5px solid var(--black);
+      border-radius: 3px;
+      width: 100%;
+    }
+    .subscribe-form button {
+      border-radius: 3px;
+      width: 100%;
+    }
+    footer {
+      padding: 40px 20px;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .footer-bottom {
+      padding: 20px;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+    .section-divider {
+      margin: 0 20px;
+    }
+    .nav-logo img {
+      height: 36px !important;
+    }
+  }
+
 </style>
 </head>
 <body>
