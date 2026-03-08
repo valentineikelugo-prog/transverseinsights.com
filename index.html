@@ -806,7 +806,9 @@
   /* MOBILE FIXES */
   @media (max-width: 768px) {
     nav {
-      padding: 16px 20px;
+      padding: 12px 20px;
+      min-height: 80px;
+      align-items: center;
     }
     .nav-links {
       display: none;
@@ -917,13 +919,15 @@
       margin: 0 20px;
     }
     .nav-logo img {
-      height: 64px !important;
+      height: 70px !important;
       background: transparent !important;
     }
     .hero-eyebrow {
-      font-size: 9px !important;
-      letter-spacing: 1.5px !important;
-      flex-wrap: wrap;
+      font-size: 10px !important;
+      letter-spacing: 1px !important;
+      white-space: nowrap;
+      overflow: visible;
+      margin-bottom: 16px;
     }
     .hero-eyebrow::before {
       display: none;
@@ -937,7 +941,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="https://raw.githubusercontent.com/valentineikelugo-prog/transverseinsights.com/main/logo.png" style="height:64px;width:auto;background:transparent;" alt="Transverse Insights">
+    <img src="https://raw.githubusercontent.com/valentineikelugo-prog/transverseinsights.com/main/logo.png" style="height:90px;width:auto;background:transparent;" alt="Transverse Insights">
   </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
