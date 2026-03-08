@@ -134,21 +134,26 @@
     font-family: 'Syne', sans-serif;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--orange);
     margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: block;
+    max-width: 100%;
+    overflow: visible;
+    white-space: normal;
   }
-
   .hero-eyebrow::before {
     content: '';
+    display: inline-block;
     width: 30px;
     height: 1px;
     background: var(--orange);
+    margin-right: 12px;
+    vertical-align: middle;
   }
+
+
 
   h1 {
     font-family: 'Playfair Display', serif;
