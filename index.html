@@ -810,122 +810,46 @@
 
   /* MOBILE FIXES */
   @media (max-width: 768px) {
+
+    /* ── NAV ── */
     nav {
-      padding: 10px 20px;
+      padding: 12px 20px;
       min-height: auto;
       align-items: center;
+      display: flex;
+      justify-content: space-between;
     }
     .nav-links {
       display: none;
     }
+    .nav-cta {
+      display: none;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo img {
+      height: 36px !important;
+      width: auto !important;
+      background: transparent !important;
+    }
+
+    /* ── HERO ── */
     .hero {
       min-height: auto;
-      padding: 70px 20px 40px;
+      padding: 80px 20px 48px;
       grid-template-columns: 1fr;
       gap: 40px;
+      text-align: left;
+    }
+    .hero-content {
+      width: 100%;
+      max-width: 100%;
+      padding: 0;
     }
     .hero-bg-spiral {
       display: none;
-    }
-    h1 {
-      font-size: 36px;
-    }
-    .hero-body {
-      font-size: 15px;
-    }
-    .hero-actions {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .flagship-card {
-      padding: 28px;
-    }
-    .card-title {
-      font-size: 20px;
-    }
-    .stat-strip {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .stat-num {
-      font-size: 22px;
-    }
-    .about-strip {
-      padding: 50px 20px;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    .strip-content h2 {
-      font-size: 28px;
-    }
-    .pillars {
-      padding: 50px 20px;
-    }
-    .pillars-header {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-    .pillars-header h2 {
-      font-size: 30px;
-    }
-    .pillars-grid {
-      grid-template-columns: 1fr;
-    }
-    .pillar {
-      padding: 32px 24px;
-    }
-    .pillar-num {
-      font-size: 40px;
-    }
-    .insights-section {
-      padding: 50px 20px;
-    }
-    .section-header h2 {
-      font-size: 30px;
-    }
-    .insights-grid {
-      grid-template-columns: 1fr;
-    }
-    .insight-card.featured h3 {
-      font-size: 22px;
-    }
-    .subscribe {
-      padding: 60px 20px;
-    }
-    .subscribe-inner h2 {
-      font-size: 34px;
-    }
-    .subscribe-form {
-      flex-direction: column;
-      border: none;
-      gap: 12px;
-    }
-    .subscribe-form input {
-      border: 1.5px solid var(--black);
-      border-radius: 3px;
-      width: 100%;
-    }
-    .subscribe-form button {
-      border-radius: 3px;
-      width: 100%;
-    }
-    footer {
-      padding: 40px 20px;
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-    .footer-bottom {
-      padding: 20px;
-      flex-direction: column;
-      gap: 12px;
-      text-align: center;
-    }
-    .section-divider {
-      margin: 0 20px;
-    }
-    .nav-logo img {
-      height: 40px !important;
-      background: transparent !important;
     }
     .hero-eyebrow {
       font-size: 10px !important;
@@ -935,6 +859,260 @@
     }
     .hero-eyebrow::before {
       display: none !important;
+    }
+    h1 {
+      font-size: 32px;
+      line-height: 1.2;
+    }
+    .hero-body {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      width: 100%;
+    }
+    .hero-actions a {
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+      display: block;
+    }
+    .hero-card {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* ── FLAGSHIP CARD ── */
+    .flagship-card {
+      padding: 24px 20px;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .card-title {
+      font-size: 17px;
+      line-height: 1.4;
+    }
+    .card-meta {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card-download {
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+      display: block;
+    }
+
+    /* ── STAT STRIP ── */
+    .stat-strip {
+      grid-template-columns: 1fr;
+      gap: 0;
+      background: var(--cream);
+    }
+    .stat-item {
+      padding: 20px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      border-right: none;
+    }
+    .stat-item:last-child {
+      border-bottom: none;
+    }
+    .stat-num {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 10px;
+      line-height: 1.4;
+      display: block;
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      padding: 48px 20px;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .strip-content {
+      padding: 0;
+    }
+    .strip-content h2 {
+      font-size: 24px;
+      line-height: 1.3;
+    }
+    .strip-content p {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ── THREE LENS FRAMEWORK ── */
+    .pillars {
+      padding: 48px 20px;
+    }
+    .pillars-header {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+    .pillars-header h2 {
+      font-size: 26px;
+      line-height: 1.3;
+    }
+    .pillars-header p {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .pillar {
+      padding: 28px 20px;
+    }
+    .pillar-num {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .pillar-icon {
+      display: none;
+    }
+    .pillar h3 {
+      font-size: 15px;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .pillar p {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ── RESEARCH / INSIGHTS ── */
+    .insights-section {
+      padding: 48px 20px;
+    }
+    .section-header {
+      margin-bottom: 28px;
+      text-align: left;
+    }
+    .section-header h2 {
+      font-size: 26px;
+    }
+    .section-header p {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .insights-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .insight-card {
+      padding: 24px 20px;
+    }
+    .insight-card.featured {
+      padding: 28px 20px;
+    }
+    .insight-card.featured h3 {
+      font-size: 19px;
+      line-height: 1.35;
+    }
+    .insight-card h3 {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+    .insight-tag {
+      font-size: 9px;
+      margin-bottom: 12px;
+    }
+    .insight-excerpt {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .insight-footer {
+      font-size: 11px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ── SUBSCRIBE ── */
+    .subscribe {
+      padding: 56px 20px;
+    }
+    .subscribe-inner {
+      max-width: 100%;
+      text-align: left;
+    }
+    .subscribe-inner h2 {
+      font-size: 26px;
+      line-height: 1.3;
+    }
+    .subscribe-inner p {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .subscribe-form {
+      flex-direction: column;
+      border: none;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .subscribe-form input {
+      border: 1.5px solid var(--black);
+      border-radius: 3px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+    .subscribe-form button {
+      border-radius: 3px;
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 20px;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .footer-col h4 {
+      font-size: 11px;
+      margin-bottom: 14px;
+    }
+    .footer-col a,
+    .footer-col p {
+      font-size: 13px;
+    }
+    .transverse-family {
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .footer-bottom {
+      padding: 20px;
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+    .footer-bottom span,
+    .footer-bottom a {
+      font-size: 11px;
+    }
+
+    /* ── MISC ── */
+    .section-divider {
+      margin: 0 20px;
     }
 
   }
